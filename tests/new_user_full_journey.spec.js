@@ -7,6 +7,7 @@ import { RegisterPage } from "../page-objects/RegisterPage.js";
 import { DeliveryDetails } from "../page-objects/DeliveryDetails.js";
 import { v4 as uuidv4 } from "uuid";
 import { deliveryDetails as userAddress } from "../data/deliveryDetails.js";
+import { PaymentPage } from "../page-objects/PaymentPage.js";
 
 test.only("New user full endt-end test journey", async ({ page }) => {
   const productsPage = new ProductsPage(page);
@@ -33,4 +34,8 @@ test.only("New user full endt-end test journey", async ({ page }) => {
   const deliveryDetails = new DeliveryDetails(page);
   await deliveryDetails.fillDeliveryDetails(userAddress);
   await deliveryDetails.saveDetails();
+  await deliveryDetails.continueToPayment();
+
+  const paymentPage = new PaymentPage(page);
+  await paymentPage.activeDiscount();
 });

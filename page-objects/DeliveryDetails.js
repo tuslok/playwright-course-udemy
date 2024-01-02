@@ -35,9 +35,9 @@ export class DeliveryDetails {
     this.saveAddressButton = page.getByRole("button", {
       name: "Save address for next time",
     });
-    this.continuePaymentButton = page.getByRole("button", {
-      name: "Continue to payment",
-    });
+    this.continuePaymentButton = page.locator(
+      '[data-qa="continue-to-payment-button"]'
+    );
   }
 
   fillDeliveryDetails = async (userAddress) => {
@@ -97,7 +97,12 @@ export class DeliveryDetails {
     expect(await this.savedAddressCountry.first().innerText()).toBe(
       await this.country.inputValue()
     );
+  };
 
+  continueToPayment = async () => {
+    this.continuePaymentButton.waitFor();
+    this.continuePaymentButton.click();
+    this.page.waitForURL(/\/payment/, { timeout: 3000 });
     await this.page.pause();
   };
 }
