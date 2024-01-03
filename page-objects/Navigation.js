@@ -13,7 +13,6 @@ export class Navigation {
   };
 
   goToCheckout = async () => {
-    await this.checkoutLink.waitFor();
     await this.checkoutLink.click();
     await this.page.waitForURL("/basket");
   };

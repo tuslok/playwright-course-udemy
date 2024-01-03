@@ -67,10 +67,12 @@ export class PaymentPage {
 
     await this.creditCardCVCInput.waitFor();
     await this.creditCardCVCInput.fill(customerDetails.cardCvc);
+  };
 
+  completePayment = async () => {
     await this.payButton.waitFor();
     await this.payButton.click();
 
-    await this.page.pause();
+    await this.page.waitForURL(/\/thank-you/, { timeout: 3000 });
   };
 }
