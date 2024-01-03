@@ -103,6 +103,5 @@ export class DeliveryDetails {
     this.continuePaymentButton.waitFor();
     this.continuePaymentButton.click();
     this.page.waitForURL(/\/payment/, { timeout: 3000 });
-    await this.page.pause();
   };
 }
