@@ -9,7 +9,7 @@ export const getLoginToken = async (username, password) => {
     }),
   });
   if (response.status !== 200) {
-    throw new Error("An error occured trying to retrieve the login token.");
+    throw Error("An error occured trying to retrieve the login token.");
   }
   const body = await response.json();
   return body.token;
