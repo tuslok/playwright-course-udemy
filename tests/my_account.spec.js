@@ -5,7 +5,7 @@ import { myAccountPage } from "../page-objects/MyAccountPage";
 import { getLoginToken } from "../api-calls/getLoginToken";
 import { userDetails } from "../data/userDetails";
 
-test.only("My Account using cookie injection and mocking network request", async ({
+test("My Account using cookie injection and mocking network request", async ({
   page,
 }) => {
   const loginToken = await getLoginToken(
@@ -30,5 +30,4 @@ test.only("My Account using cookie injection and mocking network request", async
   await myAccount.visit();
   await myAccount.waitForPageHeading();
   await myAccount.waitForErrorMessage();
-  await page.pause();
 });
